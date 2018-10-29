@@ -112,12 +112,13 @@ $R_1 = 35.2k\Omega$
 
 \subsection*{2.1.6 Design the circuit of Figure 2.1 in order to obtain a gain of $250V/V ±10\%$. Determine the values of $R_4$ and $R_5$. Discuss. At the output, take into account the loading caused by a $10X$ oscilloscope probe.}
 
-$r_e = \frac{V_T}{I_C} = \frac{25mV}{0.125mA} = 200\Omega$ \\
-\\$r_{o2} = \frac{V_A}{I_C} = \frac{115.7V}{0.125mA} = 925.6k\Omega$\\
-\\$r_{o4} = \frac{V_A}{I_C} = \frac{74.03V}{0.125mA} = 592.24k\Omega$\\
+$r_e = \frac{V_T}{I_C/2} = \frac{2*25mV}{0.25mA} = 200\Omega$ \\
+\\$r_{o2} = \frac{V_A}{{I_C}/2} = \frac{2*115.7V}{0.25mA} = 925.6k\Omega$\\
+\\$r_{o4} = \frac{V_A}{I_C/2} = \frac{2*90.7V}{0.25mA} = 725.6k\Omega$\\
 \\$g_m = \frac{I_C}{V_T} = \frac{0.125mA}{25mV} = 5mA/V$\\
 \\$A_d = \frac{r_{o4}(1+g_mR_4)||r_{o2}||R_{OSC}}{r_e + R_4}$\\
-\\$R_4$ is approximately $2.9k\Omega$. We'll make $R_5 = R_4 = 2.9k\Omega$\\
+\\We consider $R_{OSC}$ = 10 M\Omega$.\\
+\\$R_4$ is approximately $1.36k\Omega$. We'll make $R_5 = R_4 = 1.36k\Omega$\\
 
 \subsection*{2.1.7 Plot the voltage transfer characteristics and accompany it with the corresponding time domain waveform plot. Discuss the curve and maximal output swing.}
 
@@ -135,9 +136,14 @@ INSERT ANSWER HERE
 
 \subsection*{2.1.11 Find the input and output resistances the circuit. Discuss. }
 
-INSERT ANSWER HERE
+$R_{in} = 2 (\beta + 1) (r_e + R_4) = 2 (100 + 1) (200+1.36k) = 315.3k \Omega $ \\
+$R_{out} = r_{o2} || r_{o4} (1 + g_m R_5 || r_{\pi}) = 925.6k || 725.6k ( 1 + 0.005 (1.36k || 20k ) ) = 795.4k \Omega$
+
+For $R_{out}$ the resistance of the 10X probe was not considered in the calculation since it is large enough that we can neglect it.$
 
 \subsection*{2.1.12 In summary, what are the advantages and limitations of this circuit setup?}
+
+The advantages of this circuit are that is gives a high gain with a flexible voltage swing. The limitations are that there is a large output resistance with a narrow bandwidth.
 
 \begin{figure}[H]
   \centering
