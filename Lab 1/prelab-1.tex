@@ -14,8 +14,8 @@
 \setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 
 \title{2.1 - Differential Amplifier (Prelab)}                             % Title
-\author{John Wu \\ Ian Smith \\ Bilal Mohammed}                               % Author
-\date{\today}                                           % Date
+\author{John Wu \\ Ian Smith \\ Bilal Yousuf}                               % Author
+\date{\today}                                                           % Date
 
 \makeatletter
 \let\thetitle\@title
@@ -52,7 +52,7 @@
             \begin{minipage}{0.4\textwidth}
             \begin{flushright} \large
             \emph{Student Number:} \\
-            260612056 \\ 260612056 \\ 260612056                                  % Your Student Number
+            260612056 \\ 260612056 \\ 260680182                                  % Your Student Number
         \end{flushright}
     \end{minipage}\\[2 cm]
  
@@ -66,37 +66,58 @@
 
 \section*{2.1 Preparation}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{op_amp.PNG}
+\caption{\label{fig:op-amp} Differential amplifier with active load}
+\end{figure}
+
 \subsection*{2.1.2 Considering this circuit will be used as an output stage in an operational amplifier, what are the main characteristics that it must have?}
 
-INSERT ANSWER HERE
+Since the circuit will be used as an output stage in an operational amplifier, it must have the following characteristics in its most ideal form.
+
+
+\begin{itemize}
+    \item Infinite open-loop gain.
+    \item Infinite bandwidth due to ideal gain.
+    \item Infinite or zero common mode rejection ratio (CMRR).
+    \item Infinite input impedance.
+    \item Zero output impedance.
+\end{itemize}
+
+In general, these ideal characteristics will not be the actual case, but it will aim to be as close to these idealistic values as possible in order to deliver large currents to a small load - the goal of an op-amp.
 
 \subsection*{2.1.3 What is the purpose of $R_2$ and $R_3$?}
 
-INSERT ANSWER HERE
+The resistors, $R_2$ and $R_3$, are source degeneration resistances used for creating a higher output impedance and a lower equivalent transconductance. These resistors are used to give a high resistance to the current mirror formed by $Q_5$ and $Q_6$. The high output resistance will reduce the common mode gain and improve the CMRR. The resistors prevent thermal runaway in transistors Q5 and Q6 thereby providing thermal stability.
 
 \subsection*{2.1.4 Using $V_{EE} = -5V$ and $V_{CC} = 5V^1$, design the current source of the differential pair so that it sinks a current of $0.25mA$. Determine the required value of $R$.}
 
-INSERT ANSWER HERE
+When $R_2 = R_3 = 2k\Omega$ and $Q_5$ and $Q_6$ make perfect current mirrors: \\
+
+$I = \frac{V_{EE} - V_{BE} - V_{CE}}{R_2 + R_1}$ \\
+
+$\frac{9.3V}{2k\Omega + R_1} = 0.25mA$ \\
+
+$R_1 = 35.2k\Omega$
+
 
 \subsection*{2.1.5 Considering the current source only, plot the source’s output current versus the output voltage and comment on the results.}
 
 \begin{figure}[H]
-  \centering
-    \subfloat[]{{\includegraphics[width=0.4\textwidth]{image1.jpg} }}%
-    \qquad
-    \subfloat[]
-    {{\includegraphics[width=0.4\textwidth]{image2.jpg} }}%
-    \qquad
-    \caption{sample image with caption}%      
-    \label{fig:testing}%
+\centering
+\includegraphics[width=0.5\textwidth]{current_source.PNG}
+\caption{\label{fig:current-source} Circuit used for analyzing current source.}
 \end{figure}
 
 \subsection*{2.1.6 Design the circuit of Figure 2.1 in order to obtain a gain of $250V/V ±10\%$. Determine the values of $R_4$ and $R_5$. Discuss. At the output, take into account the loading caused by a $10X$ oscilloscope probe.}
 
-Note \\
-The P2220 oscilloscope probe can be used in 1X mode or 10X mode. The equivalent circuit models of this probe (including the oscilloscope) for each mode are quite different:  \\
-- 1X mode: 1 MΩ in parallel with a 110 pF capacitance to ground.  \\
-- 10X mode: 10 MΩ in parallel with a 17 pF capacitance to ground.  \\ Usually, the probe should be used in the 10X mode if possible to reduce loading effects (both capacitive and resistive). Note that a 10X probe attenuates signals by 10 times, so it may not be optimal to use the probe in this mode to measure very small signals.   Make sure to compensate your probe (see oscilloscope/probe manual) before taking measurements in order to ensure that your measured voltages are valid! If you use the oscilloscope directly with no probe (through a RG-58 coaxial cable), you load on a circuit will be similar to that of the probe in 1X mode. More specifically, the load resistance will be of 1 MΩ, and the parallel capacitance will be estimated by adding the 20 pF load of the oscilloscope to ~80 pF per meter of cable used between the circuit and oscilloscope (e.g., total capacitive load of ~100 pF for a 1 m cable)
+$r_e = \frac{V_T}{I_C} = \frac{25mV}{0.125mA} = 200\Omega$ \\
+\\$r_{o2} = \frac{V_A}{I_C} = \frac{115.7V}{0.125mA} = 925.6k\Omega$\\
+\\$r_{o4} = \frac{V_A}{I_C} = \frac{74.03V}{0.125mA} = 592.24k\Omega$\\
+\\$g_m = \frac{I_C}{V_T} = \frac{0.125mA}{25mV} = 5mA/V$\\
+\\$A_d = \frac{r_{o4}(1+g_mR_4)||r_{o2}||R_{OSC}}{r_e + R_4}$\\
+\\$R_4$ is approximately $2.9k\Omega$. We'll make $R_5 = R_4 = 2.9k\Omega$\\
 
 \subsection*{2.1.7 Plot the voltage transfer characteristics and accompany it with the corresponding time domain waveform plot. Discuss the curve and maximal output swing.}
 
@@ -118,7 +139,16 @@ INSERT ANSWER HERE
 
 \subsection*{2.1.12 In summary, what are the advantages and limitations of this circuit setup?}
 
-INSERT ANSWER HERE
+\begin{figure}[H]
+  \centering
+    \subfloat[]{{\includegraphics[width=0.4\textwidth]{image1.jpg} }}%
+    \qquad
+    \subfloat[]
+    {{\includegraphics[width=0.4\textwidth]{image2.jpg} }}%
+    \qquad
+    \caption{sample image with caption}%      
+    \label{fig:testing}%
+\end{figure}
 
 
 \end{document}
