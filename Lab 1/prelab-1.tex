@@ -106,16 +106,17 @@ $R_1 = 35.2k\Omega$
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Screenshots/Circuit_215.png}
+\includegraphics[width=0.9\textwidth]{Screenshots/Circuit_215.png}
 \caption{\label{fig:current-circuit} Circuit used for analyzing current source.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Screenshots/Graph_215.png}
+\includegraphics[width=0.9\textwidth]{Screenshots/Graph_215.png}
 \caption{\label{fig:current-voltage} Output current versus output voltage graph.}
 \end{figure}
 
+It can be observed that the output current reaches the expected constant value of approximately $0.25mA$ regardless of the output voltage.
 
 \subsection*{2.1.6 Design the circuit of Figure 2.1 in order to obtain a gain of $250V/V ±10\%$. Determine the values of $R_4$ and $R_5$. Discuss. At the output, take into account the loading caused by a $10X$ oscilloscope probe.}
 
@@ -129,17 +130,43 @@ $r_e = \frac{V_T}{I_C/2} = \frac{2*25mV}{0.25mA} = 200\Omega$ \\
 
 \subsection*{2.1.7 Plot the voltage transfer characteristics and accompany it with the corresponding time domain waveform plot. Discuss the curve and maximal output swing.}
 
-INSERT ANSWER HERE
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Screenshots/Graph_217_Vcharacteristic.png}
+\caption{\label{fig:voltage-transfer} Voltage transfer characteristics.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Screenshots/Graph_217_time.png}
+\caption{\label{fig:time-domain} Time domain waveform.}
+\end{figure}
+
+We can observe that maximal output swing centers at around 2V and occurs at input signals between -50mV and 50mV.
 
 \subsection*{2.1.8 Determine, if any, the input DC offset required to maximize the output swing. Document the maximum output swing. Discuss.}
 
-The max DC offset that results in the maximum output voltage swing occurs at the centre of the steepest part of the curve. This offset value is around 2V.
+The max DC offset that results in the maximum output voltage swing occurs at the centre of the steepest part of the curve. As mentioned above, this offset value is around 2V.
 
 \subsection*{2.1.9 Plot the differential mode frequency response and determine the $3-dB$ points. Also, take into account the parasitic resistor and capacitor values of the $10X$ oscilloscope probe at the output. Discuss.  }
 
-INSERT ANSWER HERE
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Screenshots/Graph219_freq_res.png}
+\caption{\label{fig:time-domain} Differential mode frequency response.}
+\end{figure}
+
+We can observe above that the differential gain about 59 dB (891 V/V) and the 3 dB cutoff frequency is about 13 KHz.
 
 \subsection*{2.1.10 Plot the common mode frequency response. Also, take into account the parasitic resistor and capacitor values of the $10X$ oscilloscope probe at the output. Discuss. }
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Screenshots/Graph_2110.png}
+\caption{\label{fig:time-domain} Common mode frequency response.}
+\end{figure}
+
+The common mode gain is about -30 dB (0.03 V/v), which is significantly lower than our differential gain, and therefore meets the requirements of the circuit.
 
 \subsection*{2.1.11 Find the input and output resistances the circuit. Discuss. }
 
@@ -151,17 +178,5 @@ For $R_{out}$ the resistance of the 10X probe was not considered in the calculat
 \subsection*{2.1.12 In summary, what are the advantages and limitations of this circuit setup?}
 
 The advantages of this circuit are that is gives a high gain with a flexible voltage swing. The limitations are that there is a large output resistance with a narrow bandwidth.
-
-\begin{figure}[H]
-  \centering
-    \subfloat[]{{\includegraphics[width=0.4\textwidth]{image1.jpg} }}%
-    \qquad
-    \subfloat[]
-    {{\includegraphics[width=0.4\textwidth]{image2.jpg} }}%
-    \qquad
-    \caption{sample image with caption}%      
-    \label{fig:testing}%
-\end{figure}
-
 
 \end{document}
