@@ -140,12 +140,36 @@ The difference from the small-signal amplifier in the previous lab is is the fac
 
 \subsection*{3.1.5 Plot the frequency response and comment. Remember to include 5pF parasitic capacitors to ground for each pin, and account for the parasitics of the oscilloscope.}
 
-As shown in the plot, the midband gain is close to 0dB, confirming the desired close to unity gain behaviour. The upper 3dB cutoff frequency is within the order of magnitude of 1MHz
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{315.PNG}
+\caption{Frequency Response}
+\end{figure}
+
+As shown in the plot, the midband gain is close to 0dB, confirming the desired close to unity gain behaviour. The upper 3dB cutoff frequency is within the order of magnitude of 1MHz.
 
 
 \subsection*{3.1.6 Plot the voltage transfer characteristic, and then perform a transient analysis of both designed circuits. Document the maximal output range.}
 
-From the graph above, we can observe a voltage swing from approximately -3.2 to 4.7 which centers at the input of 0.5V
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{316.PNG}
+\caption{Voltage Transfer Characteristic}
+\end{figure}
+
+From the graph above, we can observe a voltage swing from approximately -3.2 to 4.7 which centers at the input of approximately 0.5V. Shown below are the transient analysis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{316_in.PNG}
+\caption{Input Voltage Transient Response}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{316_out.PNG}
+\caption{Output Voltage Transient Response}
+\end{figure}
 
 
 \subsection*{3.1.7 In summary, what are the advantages and limitations of the class AB output stage?}
@@ -159,6 +183,10 @@ The limitations are the power inefficiencies which exist with the circuit as the
 The purpose of the the transistor is so that it can be combined with transistor $Q_11$ to form a darlington pair configuration which allows larger currents to be delivered to the load despite having a small base current.
 
 \subsection*{3.1.9 What are the advantages and disadvantages of having an internal gain to the Class AB output stage, compared to having the bulk of the gain provided only by the differential pair?   }
+
+The advantage is that since there is an internal gain, then the overall gain of the amplifier will be relatively higher. 
+
+The disadvantage is that the internal gain adds additional requirements to the circuit for both biasing and noise control.
 
 
 
