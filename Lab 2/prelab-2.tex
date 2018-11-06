@@ -99,81 +99,68 @@ Since the circuit will be used as an output stage in an operational amplifier, i
 
 In general, these ideal characteristics will not be the actual case, but it will aim to be as close to these idealistic values as possible in order to deliver large currents to a small load - the goal of an op-amp.
 
-\subsection*{2.1.3 What is the purpose of $R_2$ and $R_3$?}
+\subsection*{3.2.3 Design the Class AB output stage circuit in Figure 3.1. Check that the following specifications are met: the quiescent current (zero input signal) is 0.5 mA, and that the output stage is capable of supplying 6 V p-p to a 330 $\Omega$ load without significant distortion, and the output stage provides a unloaded (disconnected load) gain of 10V/V. Remember that when the circuit is tested alone, the biasing stage in Figure 3.3 needs to be used. }
 
-The resistors, $R_2$ and $R_3$, are source degeneration resistances used for creating a higher output impedance and a lower equivalent transconductance. These resistors are used to give a high resistance to the current mirror formed by $Q_5$ and $Q_6$. The high output resistance will reduce the common mode gain and improve the CMRR. The resistors prevent thermal runaway in transistors Q5 and Q6 thereby providing thermal stability.
+Requirements: $I_{quiescent} = 0.5mA$ and $A_{unloaded} = 10V/V$. \\
 
-\subsection*{2.1.4 Using $V_{EE} = -5V$ and $V_{CC} = 5V^1$, design the current source of the differential pair so that it sinks a current of $0.25mA$. Determine the required value of $R$.}
+Choose $V_{cAB} - 1.5V$ to ensure enough voltage for biasing the transistors on. \\
 
-When $R_2 = R_3 = 2k\Omega$ and $Q_5$ and $Q_6$ make perfect current mirrors: \\
+$V_{cc} - I_{quiescent} R_6 = V_{cAB} \rightarrow 5 - 0.5 mA (R_6) = 1.5 \Rightarrow R_6 = 7000 \Omega$
 
-$I = \frac{V_{EE} - V_{BE} - V_{CE}}{R_2 + R_1}$ \\
+$R_B = V_{be7} / I_{quiescent} \rightarrow R_B = 0.7 / 0.5 mA \Rightarrow R_B = 1400 \Omega $ \\ 
 
-$\frac{9.3V}{2k\Omega + R_1} = 0.25mA$ \\
+Choose $V_{BB}$ to be 2V, similarly.\\
 
-$R_1 = 35.2k\Omega$
+$V_{BB} = I (R_A + R_B) \rightarrow 2 V = 0.5mA (R_A + 14000 \Omega) \Rightarrow R_A = 2600 \Omega$ \\
+
+Designing for no load gain of 10 V/V. \\
+
+$r_{o7} = V_A / I_C \rightarrow r_{o7} = 74 V / 0.125 mA \Rightarrow r_{o7} = 592.24K \Omega$ \\
+
+$A_{unloaded} = [ r_{o7} || (R_A + R_B) + R_6 ] / R_7 $ \\
+
+$\rightarrow 10 V/V = [ 592 K || (2600 + 1400) + 7000 ] / R_7$ \\
+
+$\Rightarrow R_7 = 1K \Omega$ (Approximately) \\
+
+Find resistor values for biasing circuit \\
+
+$V_{in-AB} = -V_{EE} + 0.5(R_7) = -4.46 V$ 
+
+$4.46 = 10 [ R_{bias2} / (R_{bias1} + R_{bias2}) ] \rightarrow 0.8 R_{bias1} = R_{bias2}$ \\
+
+$\Rightarrow$ Choose $R_{bias1} = 1K \Omega$ and $R_{bias2} = 800 \Omega$
+
+\subsection*{3.1.4 Determine the input resistance. Comment on how it is different to a small-signal amplifier.}
 
 
-\subsection*{2.1.5 Considering the current source only, plot the source’s output current versus the output voltage and comment on the results.}
+$R_{in} = (\beta + 1)(R_E+ R_e) = 101(1000+50) = 106K \Omega$
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{Screenshots/Circuit_215.png}
-\caption{\label{fig:current-circuit} Circuit used for analyzing current source.}
-\end{figure}
+The difference from the small-signal amplifier in the previous lab is is the factor of 2 in the expression of $R_{in}$ for a small signal amplifier when measured as a differential.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{Screenshots/Graph_215.png}
-\caption{\label{fig:current-voltage} Output current versus output voltage graph.}
-\end{figure}
+\subsection*{3.1.5 Plot the frequency response and comment. Remember to include 5pF parasitic capacitors to ground for each pin, and account for the parasitics of the oscilloscope.}
+
+As shown in the plot, the midband gain is close to 0dB, confirming the desired close to unity gain behaviour. The upper 3dB cutoff frequency is within the order of magnitude of 1MHz
 
 
-\subsection*{2.1.6 Design the circuit of Figure 2.1 in order to obtain a gain of $250V/V ±10\%$. Determine the values of $R_4$ and $R_5$. Discuss. At the output, take into account the loading caused by a $10X$ oscilloscope probe.}
+\subsection*{3.1.6 Plot the voltage transfer characteristic, and then perform a transient analysis of both designed circuits. Document the maximal output range.}
 
-$r_e = \frac{V_T}{I_C/2} = \frac{2*25mV}{0.25mA} = 200\Omega$ \\
-\\$r_{o2} = \frac{V_A}{{I_C}/2} = \frac{2*115.7V}{0.25mA} = 925.6k\Omega$\\
-\\$r_{o4} = \frac{V_A}{I_C/2} = \frac{2*90.7V}{0.25mA} = 725.6k\Omega$\\
-\\$g_m = \frac{I_C}{V_T} = \frac{0.125mA}{25mV} = 5mA/V$\\
-\\$A_d = \frac{r_{o4}(1+g_mR_4)||r_{o2}||R_{OSC}}{r_e + R_4}$\\
-\\We consider $R_{OSC}$ = 10 M\Omega$.\\
-\\$R_4$ is approximately $1.36k\Omega$. We'll make $R_5 = R_4 = 1.36k\Omega$\\
+From the graph above, we can observe a voltage swing from approximately -3.2 to 4.7 which centers at the input of 0.5V
 
-\subsection*{2.1.7 Plot the voltage transfer characteristics and accompany it with the corresponding time domain waveform plot. Discuss the curve and maximal output swing.}
 
-INSERT ANSWER HERE
+\subsection*{3.1.7 In summary, what are the advantages and limitations of the class AB output stage?}
 
-\subsection*{2.1.8 Determine, if any, the input DC offset required to maximize the output swing. Document the maximum output swing. Discuss.}
+The advantage is that is solves the problem of the "dead-zone" which exists in the transfer characteristic of the class B output stage. \\
 
-The max DC offset that results in the maximum output voltage swing occurs at the centre of the steepest part of the curve. This offset value is around 2V.
+The limitations are the power inefficiencies which exist with the circuit as the transistors are all ways biased on. 
 
-\subsection*{2.1.9 Plot the differential mode frequency response and determine the $3-dB$ points. Also, take into account the parasitic resistor and capacitor values of the $10X$ oscilloscope probe at the output. Discuss.  }
+\subsection*{3.1.8 What is the purpose of transistor $Q_{12}$?}
 
-INSERT ANSWER HERE
+The purpose of the the transistor is so that it can be combined with transistor $Q_11$ to form a darlington pair configuration which allows larger currents to be delivered to the load despite having a small base current.
 
-\subsection*{2.1.10 Plot the common mode frequency response. Also, take into account the parasitic resistor and capacitor values of the $10X$ oscilloscope probe at the output. Discuss. }
+\subsection*{3.1.9 What are the advantages and disadvantages of having an internal gain to the Class AB output stage, compared to having the bulk of the gain provided only by the differential pair?   }
 
-\subsection*{2.1.11 Find the input and output resistances the circuit. Discuss. }
 
-$R_{in} = 2 (\beta + 1) (r_e + R_4) = 2 (100 + 1) (200+1.36k) = 315.3k \Omega $ \\
-$R_{out} = r_{o2} || r_{o4} (1 + g_m R_5 || r_{\pi}) = 925.6k || 725.6k ( 1 + 0.005 (1.36k || 20k ) ) = 795.4k \Omega$
-
-For $R_{out}$ the resistance of the 10X probe was not considered in the calculation since it is large enough that we can neglect it.$
-
-\subsection*{2.1.12 In summary, what are the advantages and limitations of this circuit setup?}
-
-The advantages of this circuit are that is gives a high gain with a flexible voltage swing. The limitations are that there is a large output resistance with a narrow bandwidth.
-
-\begin{figure}[H]
-  \centering
-    \subfloat[]{{\includegraphics[width=0.4\textwidth]{image1.jpg} }}%
-    \qquad
-    \subfloat[]
-    {{\includegraphics[width=0.4\textwidth]{image2.jpg} }}%
-    \qquad
-    \caption{sample image with caption}%      
-    \label{fig:testing}%
-\end{figure}
 
 
 \end{document}
