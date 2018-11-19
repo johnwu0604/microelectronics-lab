@@ -52,7 +52,7 @@
             \begin{minipage}{0.4\textwidth}
             \begin{flushright} \large
             \emph{Student Number:} \\
-            260612056 \\ 260612056 \\ 260680182                                  % Your Student Number
+            260612056 \\ 260634831 \\ 260680182                                  % Your Student Number
         \end{flushright}
     \end{minipage}\\[2 cm]
  
@@ -104,7 +104,7 @@ A Darlington pair could be used to obtain a high input impedance buffer stage. \
 
 Set the bias current according to: \\
 
-$R_{in} = /beta^2 (r_e + R_{EE}) = 100 * 100 (V_t / I_e + R_{EE}) > 9.06M \Omega$ \\ 
+$R_{in} = \beta ^2 (r_e + R_{EE}) = 100 * 100 (V_t / I_e + R_{EE}) > 9.06M \Omega$ \\ 
 
 $V_t / I_e + R_{EE} > 906 M \Omega$ \\
 
@@ -122,11 +122,11 @@ $R_1 = (10 - 0.3) / 0.00025 - 10 = 38.7k \Omega$
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{315.PNG}
+    \includegraphics[width=0.5\textwidth]{circuit.PNG}
     \caption{Buffer Stage Schematic}
 \end{figure}
 
-Note that $R_{ee1}$ and $R_{ee2}$ heats sinks are added to prefer thermal runaway.
+Note that $R_{ee1}$ and $R_{ee2}$ heats sinks are added to prevent thermal runaway.
     
 
 \subsection*{4.1.3 Determine the input and output resistances of the circuit.}
@@ -149,15 +149,17 @@ In the first lab, a simulation was already created for the output hence the inpu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{454.png}
+    \includegraphics[width=1.0\textwidth]{415.PNG}
     \caption{Frequency Response}
 \end{figure}
+
+We can see that the frequency response gives the expected gain of 0dB.
 
 \subsection*{4.1.6 Plot the voltage transfer curve of the circuit. Document the maximal output and input ranges.}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{415.png}
+    \includegraphics[width=1.0\textwidth]{416.PNG}
     \caption{Voltage Transfer Curve}
 \end{figure}
 
