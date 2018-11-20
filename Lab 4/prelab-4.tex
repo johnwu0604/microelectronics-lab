@@ -79,18 +79,27 @@ the frequency response, gain, voltage transfer characteristic, and maximal input
 output ranges. Make sure that the DC point at the output is 0V. Why is that critical in 
 the context of feedback? Ensure that the parasitic capacitors are still accounted for. }
 
-ANSWER HERE
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{512-1.PNG}
+    \caption{Frequency Response}
+\end{figure}
+
+The gain shown above is approximately 70dB which results in a gain of about 3100 V/V. The 3dB frequency cut off is around 13kHz, matching the same cut off of our differential amplifier, and showing that the bandwidth of the op amp is determined and limited only by the first stage in the op amp.
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{512.1.PNG}
-    \caption{Diagram example}
+    \includegraphics[width=1.1\textwidth]{512-2.PNG}
+    \caption{Voltage Transfer Characteristics}
 \end{figure}
-    
+
+The maximum output swing shown above is about 3.6V with a peak to peak swing of about 6V. This swing is centered at a DC input of approximately 0V in order to avoid there being current following when there in no input signal.
+
 
 \subsection*{5.1.3 Determine the phase margin of the circuit.}
 
-The phase margin of the circuit is $180 -  |phase_{0dB}| = 180 - 90 = 90º$.
+The phase margin of the circuit is $180 - |phase_{0dB}| = 180 - 90 = 90º$.
 
 \subsection*{5.1.4 By examining the circuit diagram, determine where a 
 compensating capacitor could be added to increase the phase margin of the circuit. 
@@ -98,26 +107,41 @@ You may use which ever compensating method you deem reasonable. Hint: Remember t
 in its simplest form, compensating is equivalent to slowing down a circuit’s frequency 
 response to increase its phase margin.}
 
-Through examination of the circuit, a compensating capacitor can be added in parallel with the $330\Omega$ load to increase the phase margin of the circuit.
+A compensating capacitor can be added in parallel with the $330\Omega$ load to increase the phase margin of the circuit.
 
 \subsection*{5.1.5 If needed, compensate the circuit to yield a minimum phase margin of 25 degrees.  }
 
-The phase margin of the circuit is 90º which is larger than the required minimum of 25º therefore the circuit does not need to be compensated further.
+The circuit does not need to be compensated further in order to achieve a phase margin of 25º, since the phase margin is already at 90º. 
 
 \subsection*{5.1.6 Load the circuit with a 330 $\Omega$ resistor. Document the frequency response, 
 voltage transfer characteristic, time response, and maximal input and output ranges. 
 Hint: You may decouple the load with a capacitor if you have problems.}
 
-ANSWER HERE
+The frequency responses and voltage transfer characteristics were already documented in question (5.1.2).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{512-3.PNG}
+    \caption{Transient Input Signal}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{512-4.PNG}
+    \caption{Transient Response of Output Signal}
+\end{figure}
+
+The plots above show an input amplitude of 1mV peak-to-peak and an output amplitude of 1.3V peak-to-peak which allows the gain to behave as desired.
 
 \subsection*{5.1.7 Design a non-inverting feedback amplifier which provides a gain of 150V/V. 
 Do not assume the open-loop gain to be infinite in this case, but use your measured open loop 
 gain value. Provide a schematic of the design. Plot the frequency response, time response, and 
 voltage transfer characteristic of this design. }
 
-Using the closed loop gain equations along with the equation for the feedback loop gain, we can determine the values of R1 and R2 needed in the feedback loop.
-\newline
-$A_closed  = \frac{A_open}{1 + A\beta}\\
+Using the closed loop gain equations along with the equation for the feedback loop gain, we can determine the values of R1 and R2 needed in the feedback loop. \\
+
+
+$A_{closed}  = \frac{A_{open}}{1 + A\beta}\\
 \\
 150 = \frac{3162}{1 + 3162\beta}\\
 \\
@@ -131,6 +155,14 @@ $A_closed  = \frac{A_open}{1 + A\beta}\\
 \\
 R_2 = 1k\Omega, R_1 = 156k\Omega
 $
+
+Using the resistor values, we can design our circuit as shown below.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{feedback.PNG}
+    \caption{Transient Response of Output Signal}
+\end{figure}
 
 \subsection*{5.1.8 Comment on the effect of the feedback loop on the characteristics of the 
 amplifier. Mainly, comment on the bandwidth, gain, and input resistance.}
