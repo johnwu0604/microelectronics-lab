@@ -1,0 +1,21 @@
+Circuit: * C:\Users\iansm\Desktop\microelectronics-lab\Lab 2\ClassAB_VIC.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Tue Nov 06 14:35:29 2018
+Total elapsed time: 0.055 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2508
+traniter = 2486
+tranpoints = 1103
+accept = 1073
+rejected = 30
+matrix size = 25
+fillins = 14
+solver = Normal
+Matrix Compiler1: 2.97 KB object code size  0.5/0.2/[0.1]
+Matrix Compiler2: off  [0.2]/0.3/0.2
+
